@@ -1,5 +1,76 @@
 @layer craftcss-tokens {
   :root {
-    --craftcss-token-baseline: initial;
+  --craftcss-primitive-color-neutral-0: #fff;
+  --craftcss-primitive-color-neutral-100: #f6f7f9;
+  --craftcss-primitive-color-neutral-200: #e8ecf1;
+  --craftcss-primitive-color-neutral-700: #3c4857;
+  --craftcss-primitive-color-neutral-900: #1a212b;
+  --craftcss-primitive-color-brand-500: #2f6fed;
+  --craftcss-primitive-color-brand-600: #1f5ad2;
+  --craftcss-primitive-color-success-500: #167a4d;
+  --craftcss-primitive-color-danger-500: #bf2f44;
+  --craftcss-primitive-space-0: 0rem;
+  --craftcss-primitive-space-1: 0.25rem;
+  --craftcss-primitive-space-2: 0.5rem;
+  --craftcss-primitive-space-3: 0.75rem;
+  --craftcss-primitive-space-4: 1rem;
+  --craftcss-primitive-space-6: 1.5rem;
+  --craftcss-primitive-space-8: 2rem;
+  --craftcss-primitive-radius-sm: 0.25rem;
+  --craftcss-primitive-radius-md: 0.5rem;
+  --craftcss-primitive-radius-lg: 0.75rem;
+  --craftcss-primitive-radius-pill: 9999px;
+  --craftcss-primitive-font-family-sans: "Segoe UI", "Inter", system-ui, sans-serif;
+  --craftcss-primitive-font-weight-regular: 400;
+  --craftcss-primitive-font-weight-medium: 500;
+  --craftcss-primitive-font-weight-semibold: 600;
+  --craftcss-semantic-color-bg-canvas: var(--craftcss-primitive-color-neutral-0);
+  --craftcss-semantic-color-bg-subtle: var(--craftcss-primitive-color-neutral-100);
+  --craftcss-semantic-color-fg-default: var(--craftcss-primitive-color-neutral-900);
+  --craftcss-semantic-color-fg-muted: var(--craftcss-primitive-color-neutral-700);
+  --craftcss-semantic-color-fg-on-brand: var(--craftcss-primitive-color-neutral-0);
+  --craftcss-semantic-color-border-default: var(--craftcss-primitive-color-neutral-200);
+  --craftcss-semantic-color-brand-solid: var(--craftcss-primitive-color-brand-500);
+  --craftcss-semantic-color-brand-solid-hover: var(--craftcss-primitive-color-brand-600);
+  --craftcss-semantic-color-status-success: var(--craftcss-primitive-color-success-500);
+  --craftcss-semantic-color-status-danger: var(--craftcss-primitive-color-danger-500);
+  --craftcss-semantic-space-inline-sm: var(--craftcss-primitive-space-2);
+  --craftcss-semantic-space-inline-md: var(--craftcss-primitive-space-4);
+  --craftcss-semantic-space-block-sm: var(--craftcss-primitive-space-2);
+  --craftcss-semantic-space-block-md: var(--craftcss-primitive-space-4);
+  --craftcss-semantic-space-block-lg: var(--craftcss-primitive-space-6);
+  --craftcss-semantic-radius-control: var(--craftcss-primitive-radius-md);
+  --craftcss-semantic-radius-surface: var(--craftcss-primitive-radius-lg);
+  --craftcss-semantic-radius-pill: var(--craftcss-primitive-radius-pill);
+  --craftcss-semantic-typography-family-body: var(--craftcss-primitive-font-family-sans);
+  --craftcss-semantic-typography-weight-body: var(--craftcss-primitive-font-weight-regular);
+  --craftcss-semantic-typography-weight-emphasis: var(--craftcss-primitive-font-weight-medium);
+  --craftcss-semantic-typography-size-body: clamp(0.95rem, 0.92rem + 0.15cqi, 1.05rem);
+  --craftcss-semantic-typography-size-title: clamp(1.35rem, 1.2rem + 0.7cqi, 1.8rem);
+  --craftcss-semantic-typography-line-height-body: 1.5;
+  --craftcss-semantic-typography-line-height-title: 1.25;
+  --craftcss-component-button-bg-default: var(--craftcss-semantic-color-brand-solid);
+  --craftcss-component-button-bg-hover: {semantic.color.brand.solidHover};
+  --craftcss-component-button-fg-default: {semantic.color.fg.onBrand};
+  --craftcss-component-button-radius: var(--craftcss-semantic-radius-control);
+  --craftcss-component-button-padding-inline: var(--craftcss-semantic-space-inline-md);
+  --craftcss-component-button-padding-block: var(--craftcss-semantic-space-block-sm);
+  --craftcss-component-button-font-weight: var(--craftcss-semantic-typography-weight-emphasis);
+  --craftcss-component-card-bg: var(--craftcss-semantic-color-bg-canvas);
+  --craftcss-component-card-border-color: var(--craftcss-semantic-color-border-default);
+  --craftcss-component-card-radius: var(--craftcss-semantic-radius-surface);
+  --craftcss-component-card-padding: var(--craftcss-semantic-space-block-md);
+  --craftcss-component-field-bg: var(--craftcss-semantic-color-bg-canvas);
+  --craftcss-component-field-border-color: var(--craftcss-semantic-color-border-default);
+  --craftcss-component-field-radius: var(--craftcss-semantic-radius-control);
+  --craftcss-component-field-padding-inline: var(--craftcss-semantic-space-inline-sm);
+  --craftcss-component-field-padding-block: var(--craftcss-semantic-space-block-sm);
+  }
+
+  [data-craftcss-theme="artisan"], :root[data-craftcss-theme="artisan"] {
+    --craftcss-semantic-color-brand-solid: #2a67dc;
+    --craftcss-semantic-color-brand-solid-hover: #1d52b8;
+    --craftcss-semantic-color-bg-canvas: #fdfefe;
+    --craftcss-component-button-radius: 0.625rem;
   }
 }
