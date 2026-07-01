@@ -1,5 +1,110 @@
+@import url("@craftcss/tokens/styles.css");
+
 @layer craftcss-foundation {
-  :where(html, body) {
-    min-block-size: 100%;
+  :where(*, *::before, *::after) {
+    box-sizing: border-box;
+  }
+
+  :where(html) {
+    color-scheme: light dark;
+    text-size-adjust: 100%;
+    font-family: var(--craftcss-semantic-typography-family-body);
+    font-size: var(--craftcss-semantic-typography-size-body);
+    line-height: var(--craftcss-semantic-typography-line-height-body);
+    font-weight: var(--craftcss-semantic-typography-weight-body);
+    scroll-behavior: smooth;
+  }
+
+  :where(body) {
+    margin: 0;
+    min-block-size: 100vb;
+    background-color: var(--craftcss-semantic-color-bg-canvas);
+    color: var(--craftcss-semantic-color-fg-default);
+    text-rendering: optimizelegibility;
+  }
+
+  :where(h1, h2, h3, h4, h5, h6) {
+    margin-block: 0 0.5em;
+    line-height: var(--craftcss-semantic-typography-line-height-title);
+    font-weight: var(--craftcss-semantic-typography-weight-emphasis);
+    color: var(--craftcss-semantic-color-fg-default);
+    text-wrap: balance;
+  }
+
+  :where(h1) {
+    font-size: var(--craftcss-semantic-typography-size-title);
+  }
+
+  :where(p, ul, ol, dl, blockquote, figure, pre) {
+    margin-block: 0 1em;
+  }
+
+  :where(ul, ol) {
+    padding-inline-start: 1.5em;
+  }
+
+  :where(a) {
+    color: var(--craftcss-semantic-color-brand-solid);
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.16em;
+  }
+
+  :where(a:hover) {
+    color: var(--craftcss-semantic-color-brand-solid-hover);
+  }
+
+  :where(button, input, select, textarea) {
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
+  }
+
+  :where(button, input, select, textarea, fieldset) {
+    margin: 0;
+  }
+
+  :where(button) {
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+
+  :where(textarea) {
+    resize: vertical;
+    min-block-size: 4lh;
+  }
+
+  :where(img, svg, video, canvas, audio, iframe, embed, object) {
+    display: block;
+    max-inline-size: 100%;
+  }
+
+  :where(table) {
+    border-collapse: collapse;
+    border-spacing: 0;
+    inline-size: 100%;
+  }
+
+  :where(th, td) {
+    text-align: start;
+    padding: 0;
+  }
+
+  :where(:focus-visible) {
+    outline: max(2px, 0.12em) solid var(--craftcss-semantic-color-brand-solid);
+    outline-offset: 2px;
+  }
+
+  :where(:disabled) {
+    cursor: not-allowed;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where(*, *::before, *::after) {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
