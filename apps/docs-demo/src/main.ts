@@ -88,10 +88,10 @@ app.innerHTML = `
         </article>
 
         <article class="c-card l-flow">
-          <ul class="c-menu" role="menu" aria-label="Project menu">
-            <li><button class="c-menu-item" role="menuitem" aria-current="page">Overview</button></li>
-            <li><button class="c-menu-item" role="menuitem">Deployments</button></li>
-            <li><button class="c-menu-item" role="menuitem" aria-disabled="true">Billing</button></li>
+          <ul class="c-menu" aria-label="Project menu">
+            <li><button class="c-menu-item" aria-current="page">Overview</button></li>
+            <li><button class="c-menu-item">Deployments</button></li>
+            <li><button class="c-menu-item" aria-disabled="true">Billing</button></li>
           </ul>
 
           <div class="c-tabs">
@@ -204,4 +204,26 @@ popoverToggle?.addEventListener("click", () => {
       popoverToggle.setAttribute("aria-expanded", "true");
     }
   }
+});
+
+const accordionTriggers = document.querySelectorAll<HTMLButtonElement>(".c-accordion-trigger");
+accordionTriggers.forEach((trigger) => {
+  const panel = trigger.nextElementSibling;
+  if (!(panel instanceof HTMLDivElement) || !panel.classList.contains("c-accordion-panel")) {
+    return;
+  }
+
+  const togglePanel = () => {
+    const expanded = trigger.getAttribute("aria-expanded") === "true";
+    trigger.setAttribute("aria-expanded", expanded ? "false" : "true");
+    panel.toggleAttribute("hidden", expanded);
+  };
+
+  trigger.addEventListener("click", togglePanel);
+  trigger.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      togglePanel();
+    }
+  });
 });
