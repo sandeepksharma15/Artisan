@@ -1,5 +1,494 @@
+@import url("@craftcss/utilities/styles.css");
+
 @layer craftcss-components {
-  .c-component-placeholder {
-    display: block;
+  :where(.c-button) {
+    --c-button-bg: var(
+      --craftcss-component-button-bg-default,
+      var(--craftcss-semantic-color-brand-solid)
+    );
+    --c-button-fg: var(
+      --craftcss-component-button-fg-default,
+      var(--craftcss-semantic-color-fg-on-brand)
+    );
+    --c-button-radius: var(
+      --craftcss-component-button-radius,
+      var(--craftcss-semantic-radius-control)
+    );
+    --c-button-px: var(--craftcss-component-button-padding-inline, 1rem);
+    --c-button-py: var(--craftcss-component-button-padding-block, 0.5rem);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--craftcss-semantic-space-inline-sm, 0.5rem);
+    border: 1px solid transparent;
+    border-radius: var(--c-button-radius);
+    padding-inline: var(--c-button-px);
+    padding-block: var(--c-button-py);
+    min-block-size: 2.5rem;
+    font: inherit;
+    font-weight: var(
+      --craftcss-component-button-font-weight,
+      var(--craftcss-semantic-typography-weight-emphasis)
+    );
+    text-decoration: none;
+    cursor: pointer;
+    background-color: var(--c-button-bg);
+    color: var(--c-button-fg);
+    transition: background-color 120ms ease-out;
+  }
+
+  :where(.c-button:hover) {
+    background-color: var(--craftcss-semantic-color-brand-solid-hover);
+  }
+
+  :where(.c-button:active) {
+    translate: 0 1px;
+  }
+
+  :where(.c-button:disabled, .c-button[aria-disabled="true"]) {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  :where(.c-field-label) {
+    display: inline-block;
+    margin-block-end: var(--craftcss-semantic-space-block-sm, 0.5rem);
+    font-weight: var(--craftcss-semantic-typography-weight-emphasis);
+  }
+
+  :where(.c-input, .c-textarea, .c-select) {
+    inline-size: 100%;
+    min-block-size: 2.5rem;
+    border: 1px solid
+      var(--craftcss-component-field-border-color, var(--craftcss-semantic-color-border-default));
+    border-radius: var(--craftcss-component-field-radius, var(--craftcss-semantic-radius-control));
+    padding-inline: var(--craftcss-component-field-padding-inline, 0.5rem);
+    padding-block: var(--craftcss-component-field-padding-block, 0.5rem);
+    font: inherit;
+    color: var(--craftcss-semantic-color-fg-default);
+    background-color: var(--craftcss-component-field-bg, var(--craftcss-semantic-color-bg-canvas));
+  }
+
+  :where(.c-input::placeholder, .c-textarea::placeholder) {
+    color: var(--craftcss-semantic-color-fg-muted);
+    opacity: 1;
+  }
+
+  :where(.c-input:disabled, .c-textarea:disabled, .c-select:disabled) {
+    cursor: not-allowed;
+    opacity: 0.75;
+  }
+
+  :where(.c-textarea) {
+    min-block-size: 6rem;
+    resize: vertical;
+  }
+
+  :where(.c-select) {
+    appearance: none;
+    background-image:
+      linear-gradient(45deg, transparent 50%, currentcolor 50%),
+      linear-gradient(135deg, currentcolor 50%, transparent 50%);
+    background-position:
+      calc(100% - 1rem) calc(50% - 1.5px),
+      calc(100% - 0.65rem) calc(50% - 1.5px);
+    background-size:
+      0.35rem 0.35rem,
+      0.35rem 0.35rem;
+    background-repeat: no-repeat;
+    padding-inline-end: 2rem;
+  }
+
+  :where(.c-choice) {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--craftcss-semantic-space-inline-sm, 0.5rem);
+    color: var(--craftcss-semantic-color-fg-default);
+    cursor: pointer;
+  }
+
+  :where(.c-checkbox, .c-radio) {
+    inline-size: 1.05rem;
+    block-size: 1.05rem;
+    margin: 0;
+    accent-color: var(--craftcss-semantic-color-brand-solid);
+  }
+
+  :where(.c-switch) {
+    --c-switch-inline: 2.5rem;
+    --c-switch-block: 1.5rem;
+    --c-switch-thumb: calc(var(--c-switch-block) - 0.28rem);
+
+    position: relative;
+    inline-size: var(--c-switch-inline);
+    block-size: var(--c-switch-block);
+    margin: 0;
+    border-radius: var(--craftcss-semantic-radius-pill);
+    border: 1px solid
+      var(--craftcss-component-field-border-color, var(--craftcss-semantic-color-border-default));
+    background-color: var(--craftcss-semantic-color-bg-subtle);
+    appearance: none;
+    cursor: pointer;
+    transition: background-color 120ms ease-out;
+  }
+
+  :where(.c-switch::before) {
+    content: "";
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: 0.12rem;
+    inline-size: var(--c-switch-thumb);
+    block-size: var(--c-switch-thumb);
+    border-radius: 50%;
+    background-color: var(--craftcss-semantic-color-bg-canvas);
+    translate: 0 -50%;
+    transition: translate 120ms ease-out;
+  }
+
+  :where(.c-switch:checked) {
+    border-color: transparent;
+    background-color: var(--craftcss-semantic-color-brand-solid);
+  }
+
+  :where(.c-switch:checked::before) {
+    translate: calc(var(--c-switch-inline) - var(--c-switch-thumb) - 0.34rem) -50%;
+  }
+
+  :where(.c-card) {
+    display: grid;
+    gap: var(--craftcss-semantic-space-block-md, 1rem);
+    border: 1px solid
+      var(--craftcss-component-card-border-color, var(--craftcss-semantic-color-border-default));
+    border-radius: var(--craftcss-component-card-radius, var(--craftcss-semantic-radius-surface));
+    padding: var(--craftcss-component-card-padding, var(--craftcss-semantic-space-block-md));
+    background-color: var(--craftcss-component-card-bg, var(--craftcss-semantic-color-bg-canvas));
+    color: var(--craftcss-semantic-color-fg-default);
+  }
+
+  :where(.c-card-header, .c-card-footer) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--craftcss-semantic-space-inline-sm, 0.5rem);
+  }
+
+  :where(.c-menu) {
+    display: grid;
+    gap: 2px;
+    margin: 0;
+    padding: var(--craftcss-semantic-space-block-sm, 0.5rem);
+    list-style: none;
+    border: 1px solid
+      var(--craftcss-component-card-border-color, var(--craftcss-semantic-color-border-default));
+    border-radius: var(--craftcss-semantic-radius-surface);
+    background-color: var(--craftcss-semantic-color-bg-canvas);
+  }
+
+  :where(.c-menu-item) {
+    display: flex;
+    align-items: center;
+    gap: var(--craftcss-semantic-space-inline-sm, 0.5rem);
+    inline-size: 100%;
+    border: 0;
+    border-radius: var(--craftcss-semantic-radius-control);
+    padding-inline: var(--craftcss-semantic-space-inline-sm, 0.5rem);
+    padding-block: var(--craftcss-semantic-space-block-sm, 0.5rem);
+    text-align: start;
+    text-decoration: none;
+    font: inherit;
+    color: var(--craftcss-semantic-color-fg-default);
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  :where(.c-menu-item:hover, .c-menu-item[aria-current="page"]) {
+    background-color: var(--craftcss-semantic-color-bg-subtle);
+  }
+
+  :where(.c-menu-item[aria-disabled="true"]) {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  :where(.c-tabs) {
+    display: grid;
+    gap: var(--craftcss-semantic-space-block-sm, 0.5rem);
+  }
+
+  :where(.c-tab-list) {
+    display: flex;
+    gap: var(--craftcss-semantic-space-inline-sm, 0.5rem);
+    overflow-x: auto;
+    border-block-end: 1px solid
+      var(--craftcss-component-card-border-color, var(--craftcss-semantic-color-border-default));
+    padding-block-end: 2px;
+  }
+
+  :where(.c-tab) {
+    border: 0;
+    border-radius: var(--craftcss-semantic-radius-control) var(--craftcss-semantic-radius-control) 0
+      0;
+    padding-inline: var(--craftcss-semantic-space-inline-md, 1rem);
+    padding-block: var(--craftcss-semantic-space-block-sm, 0.5rem);
+    font: inherit;
+    color: var(--craftcss-semantic-color-fg-muted);
+    background-color: transparent;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  :where(.c-tab[aria-selected="true"]) {
+    color: var(--craftcss-semantic-color-fg-default);
+    background-color: var(--craftcss-semantic-color-bg-subtle);
+  }
+
+  :where(.c-tab-panel[hidden]) {
+    display: none;
+  }
+
+  :where(.c-table-wrap) {
+    overflow: auto;
+    border: 1px solid
+      var(--craftcss-component-card-border-color, var(--craftcss-semantic-color-border-default));
+    border-radius: var(--craftcss-semantic-radius-surface);
+    background-color: var(--craftcss-semantic-color-bg-canvas);
+  }
+
+  :where(.c-table) {
+    inline-size: 100%;
+    border-collapse: collapse;
+    min-inline-size: 32rem;
+  }
+
+  :where(.c-table caption) {
+    padding-inline: var(--craftcss-semantic-space-inline-md, 1rem);
+    padding-block: var(--craftcss-semantic-space-block-sm, 0.5rem);
+    text-align: start;
+    color: var(--craftcss-semantic-color-fg-muted);
+  }
+
+  :where(.c-table th, .c-table td) {
+    border-block-end: 1px solid
+      var(--craftcss-component-card-border-color, var(--craftcss-semantic-color-border-default));
+    padding-inline: var(--craftcss-semantic-space-inline-md, 1rem);
+    padding-block: var(--craftcss-semantic-space-block-sm, 0.5rem);
+    text-align: start;
+    vertical-align: top;
+  }
+
+  :where(.c-table thead th) {
+    font-weight: var(--craftcss-semantic-typography-weight-emphasis);
+    background-color: var(--craftcss-semantic-color-bg-subtle);
+  }
+
+  :where(.c-badge) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    border: 1px solid var(--craftcss-semantic-color-border-default);
+    border-radius: var(--craftcss-semantic-radius-pill);
+    padding-inline: 0.6em;
+    padding-block: 0.2em;
+    font-size: 0.85em;
+    font-weight: var(--craftcss-semantic-typography-weight-emphasis);
+    line-height: 1.2;
+    color: var(--craftcss-semantic-color-fg-default);
+    background-color: var(--craftcss-semantic-color-bg-subtle);
+    white-space: nowrap;
+  }
+
+  :where(.c-badge[data-tone="success"]) {
+    border-color: var(--craftcss-semantic-color-status-success);
+    color: var(--craftcss-semantic-color-status-success);
+  }
+
+  :where(.c-badge[data-tone="danger"]) {
+    border-color: var(--craftcss-semantic-color-status-danger);
+    color: var(--craftcss-semantic-color-status-danger);
+  }
+
+  :where(.c-alert) {
+    display: grid;
+    gap: var(--craftcss-semantic-space-block-sm, 0.5rem);
+    border: 1px solid var(--craftcss-semantic-color-border-default);
+    border-inline-start-width: 0.35rem;
+    border-radius: var(--craftcss-semantic-radius-surface);
+    padding-inline: var(--craftcss-semantic-space-inline-md, 1rem);
+    padding-block: var(--craftcss-semantic-space-block-sm, 0.5rem);
+    color: var(--craftcss-semantic-color-fg-default);
+    background-color: var(--craftcss-semantic-color-bg-subtle);
+  }
+
+  :where(.c-alert-title) {
+    font-weight: var(--craftcss-semantic-typography-weight-emphasis);
+  }
+
+  :where(.c-alert[data-tone="success"]) {
+    border-inline-start-color: var(--craftcss-semantic-color-status-success);
+  }
+
+  :where(.c-alert[data-tone="danger"]) {
+    border-inline-start-color: var(--craftcss-semantic-color-status-danger);
+  }
+
+  :where(.c-dialog) {
+    inline-size: min(100% - 2rem, 42rem);
+    max-block-size: min(85vb, 48rem);
+    margin: auto;
+    border: 1px solid
+      var(--craftcss-component-card-border-color, var(--craftcss-semantic-color-border-default));
+    border-radius: var(--craftcss-semantic-radius-surface);
+    padding: 0;
+    color: var(--craftcss-semantic-color-fg-default);
+    background-color: var(--craftcss-semantic-color-bg-canvas);
+    overflow: clip;
+  }
+
+  :where(.c-dialog[open]) {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+
+  :where(.c-dialog::backdrop) {
+    background: color-mix(in srgb, var(--craftcss-semantic-color-fg-default) 35%, transparent);
+  }
+
+  :where(.c-dialog-header, .c-dialog-footer) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--craftcss-semantic-space-inline-sm, 0.5rem);
+    padding-inline: var(--craftcss-semantic-space-inline-md, 1rem);
+    padding-block: var(--craftcss-semantic-space-block-sm, 0.5rem);
+  }
+
+  :where(.c-dialog-body) {
+    overflow: auto;
+    padding-inline: var(--craftcss-semantic-space-inline-md, 1rem);
+    padding-block: var(--craftcss-semantic-space-block-md, 1rem);
+  }
+
+  :where(.c-popover-wrap) {
+    position: relative;
+    display: inline-grid;
+    justify-items: start;
+    gap: var(--craftcss-semantic-space-block-sm, 0.5rem);
+  }
+
+  :where(.c-popover) {
+    position: absolute;
+    inset-block-start: calc(100% + 0.25rem);
+    inset-inline-start: 0;
+    z-index: 20;
+    inline-size: min(22rem, 90vi);
+    border: 1px solid
+      var(--craftcss-component-card-border-color, var(--craftcss-semantic-color-border-default));
+    border-radius: var(--craftcss-semantic-radius-surface);
+    padding: var(--craftcss-semantic-space-block-sm, 0.5rem);
+    background-color: var(--craftcss-semantic-color-bg-canvas);
+    box-shadow: 0 0.5rem 1.25rem
+      color-mix(in srgb, var(--craftcss-semantic-color-fg-default) 15%, transparent);
+  }
+
+  :where(.c-popover[hidden]) {
+    display: none;
+  }
+
+  :where(.c-toast-region) {
+    position: fixed;
+    inset-block-end: var(--craftcss-semantic-space-block-md, 1rem);
+    inset-inline-end: var(--craftcss-semantic-space-inline-md, 1rem);
+    z-index: 40;
+    display: grid;
+    gap: var(--craftcss-semantic-space-block-sm, 0.5rem);
+    inline-size: min(24rem, calc(100vi - 2rem));
+    pointer-events: none;
+  }
+
+  :where(.c-toast) {
+    pointer-events: auto;
+    display: grid;
+    gap: 0.25rem;
+    border: 1px solid
+      var(--craftcss-component-card-border-color, var(--craftcss-semantic-color-border-default));
+    border-inline-start-width: 0.35rem;
+    border-radius: var(--craftcss-semantic-radius-surface);
+    padding-inline: var(--craftcss-semantic-space-inline-md, 1rem);
+    padding-block: var(--craftcss-semantic-space-block-sm, 0.5rem);
+    color: var(--craftcss-semantic-color-fg-default);
+    background-color: var(--craftcss-semantic-color-bg-canvas);
+  }
+
+  :where(.c-toast[data-tone="success"]) {
+    border-inline-start-color: var(--craftcss-semantic-color-status-success);
+  }
+
+  :where(.c-toast[data-tone="danger"]) {
+    border-inline-start-color: var(--craftcss-semantic-color-status-danger);
+  }
+
+  :where(.c-accordion) {
+    border: 1px solid
+      var(--craftcss-component-card-border-color, var(--craftcss-semantic-color-border-default));
+    border-radius: var(--craftcss-semantic-radius-surface);
+    overflow: clip;
+    background-color: var(--craftcss-semantic-color-bg-canvas);
+  }
+
+  :where(.c-accordion-item + .c-accordion-item) {
+    border-block-start: 1px solid
+      var(--craftcss-component-card-border-color, var(--craftcss-semantic-color-border-default));
+  }
+
+  :where(.c-accordion-trigger) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    inline-size: 100%;
+    border: 0;
+    padding-inline: var(--craftcss-semantic-space-inline-md, 1rem);
+    padding-block: var(--craftcss-semantic-space-block-sm, 0.5rem);
+    text-align: start;
+    font: inherit;
+    color: var(--craftcss-semantic-color-fg-default);
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  :where(.c-accordion-trigger[aria-expanded="true"]) {
+    background-color: var(--craftcss-semantic-color-bg-subtle);
+  }
+
+  :where(.c-accordion-panel) {
+    padding-inline: var(--craftcss-semantic-space-inline-md, 1rem);
+    padding-block-end: var(--craftcss-semantic-space-block-md, 1rem);
+  }
+
+  :where(.c-accordion-panel[hidden]) {
+    display: none;
+  }
+
+  :where(
+    .c-input,
+    .c-textarea,
+    .c-select,
+    .c-checkbox,
+    .c-radio,
+    .c-switch,
+    .c-button,
+    .c-menu-item,
+    .c-tab,
+    .c-accordion-trigger
+  ):focus-visible {
+    outline: max(2px, 0.12em) solid var(--craftcss-semantic-color-brand-solid);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where(.c-button, .c-switch, .c-switch::before, .c-menu-item, .c-tab, .c-accordion-trigger) {
+      transition: none;
+    }
   }
 }
