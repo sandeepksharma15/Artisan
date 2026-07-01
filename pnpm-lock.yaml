@@ -45,17 +45,37 @@ importers:
         specifier: ^3.2.4
         version: 3.2.6(@types/node@22.20.0)
 
-  packages/@craftcss/artisan: {}
+  packages/@craftcss/artisan:
+    dependencies:
+      '@craftcss/components':
+        specifier: workspace:*
+        version: link:../components
 
-  packages/@craftcss/components: {}
+  packages/@craftcss/components:
+    dependencies:
+      '@craftcss/utilities':
+        specifier: workspace:*
+        version: link:../utilities
 
-  packages/@craftcss/foundation: {}
+  packages/@craftcss/foundation:
+    dependencies:
+      '@craftcss/tokens':
+        specifier: workspace:*
+        version: link:../tokens
 
-  packages/@craftcss/layouts: {}
+  packages/@craftcss/layouts:
+    dependencies:
+      '@craftcss/foundation':
+        specifier: workspace:*
+        version: link:../foundation
 
   packages/@craftcss/tokens: {}
 
-  packages/@craftcss/utilities: {}
+  packages/@craftcss/utilities:
+    dependencies:
+      '@craftcss/layouts':
+        specifier: workspace:*
+        version: link:../layouts
 
 packages:
 

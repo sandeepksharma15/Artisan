@@ -15,6 +15,9 @@
     },
     "./styles.css": "./src/index.css"
   },
+  "dependencies": {
+    "@craftcss/utilities": "workspace:*"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "dev": "tsc -p tsconfig.json --watch",
