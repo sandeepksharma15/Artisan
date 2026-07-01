@@ -50,8 +50,8 @@
   --craftcss-semantic-typography-line-height-body: 1.5;
   --craftcss-semantic-typography-line-height-title: 1.25;
   --craftcss-component-button-bg-default: var(--craftcss-semantic-color-brand-solid);
-  --craftcss-component-button-bg-hover: {semantic.color.brand.solidHover};
-  --craftcss-component-button-fg-default: {semantic.color.fg.onBrand};
+  --craftcss-component-button-bg-hover: var(--craftcss-semantic-color-brand-solid-hover);
+  --craftcss-component-button-fg-default: var(--craftcss-semantic-color-fg-on-brand);
   --craftcss-component-button-radius: var(--craftcss-semantic-radius-control);
   --craftcss-component-button-padding-inline: var(--craftcss-semantic-space-inline-md);
   --craftcss-component-button-padding-block: var(--craftcss-semantic-space-block-sm);

@@ -24,3 +24,5 @@
 ## Gotchas
 
 <!-- Pitfalls, quirks, or non-obvious behaviors encountered in this workspace. -->
+
+- 2026-07-01: Token references can contain camelCase path segments (e.g., `solidHover`, `onBrand`); parsing regex must allow uppercase letters in dot segments or generated CSS may retain unresolved `{semantic...}` placeholders and trigger Vite CSS minification warnings.

@@ -1,0 +1,20 @@
+{
+  "name": "@craftcss/docs-demo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint \"src/**/*.ts\" --max-warnings=0 && stylelint \"src/**/*.css\"",
+    "test": "vitest run --passWithNoTests",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@craftcss/artisan": "workspace:*"
+  },
+  "devDependencies": {
+    "vite": "^5.4.19"
+  }
+}

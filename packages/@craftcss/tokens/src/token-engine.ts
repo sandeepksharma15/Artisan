@@ -1,6 +1,6 @@
 import type { TokenModel, TokenNode, TokenValidationResult } from "./types";
 
-const REFERENCE_PATTERN = /\{([a-z]+(?:\.[a-z0-9-]+)+)\}/g;
+const REFERENCE_PATTERN = /\{([a-z]+(?:\.[A-Za-z0-9-]+)+)\}/g;
 
 export function flattenTokens(node: TokenNode, prefix: string[] = []): Map<string, string> {
   const out = new Map<string, string>();

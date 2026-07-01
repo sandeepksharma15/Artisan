@@ -55,5 +55,6 @@ describe("token css generation", () => {
     expect(css).toContain("--craftcss-primitive-color-neutral-0");
     expect(css).toContain("--craftcss-semantic-typography-size-body: clamp(");
     expect(css).toContain(':root[data-craftcss-theme="artisan"]');
+    expect(css).not.toMatch(/\{[a-z]+(?:\.[A-Za-z0-9-]+)+\}/);
   });
 });

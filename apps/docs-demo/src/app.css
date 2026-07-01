@@ -1,0 +1,64 @@
+.demo-shell {
+  min-block-size: 100vb;
+}
+
+.demo-hero {
+  display: grid;
+  gap: 1rem;
+  padding-block: 2rem;
+}
+
+.demo-grid {
+  --l-grid-min: 18rem;
+}
+
+.demo-panel {
+  border: 1px dashed var(--craftcss-semantic-color-border-default);
+  border-radius: var(--craftcss-semantic-radius-surface);
+  padding: var(--craftcss-semantic-space-block-md);
+  background: color-mix(in srgb, var(--craftcss-semantic-color-bg-subtle) 65%, transparent);
+}
+
+.demo-section {
+  padding-block: 1.5rem;
+}
+
+.demo-section > h2 {
+  margin-block-end: 0.75rem;
+}
+
+.demo-snippet {
+  border: 1px solid var(--craftcss-semantic-color-border-default);
+  border-radius: var(--craftcss-semantic-radius-control);
+  padding: 0.75rem;
+  background-color: var(--craftcss-semantic-color-bg-canvas);
+  overflow: auto;
+}
+
+.demo-snippet code {
+  white-space: pre;
+  font-family: "Cascadia Code", "Fira Code", monospace;
+  font-size: 0.85rem;
+}
+
+.demo-kbd {
+  border: 1px solid var(--craftcss-semantic-color-border-default);
+  border-radius: 0.35rem;
+  padding-inline: 0.35rem;
+  padding-block: 0.1rem;
+  background-color: var(--craftcss-semantic-color-bg-subtle);
+  font-family: "Cascadia Code", "Fira Code", monospace;
+  font-size: 0.8em;
+}
+
+.demo-responsive-card {
+  display: grid;
+  gap: var(--craftcss-semantic-space-block-sm);
+  grid-template-columns: 1fr 1fr;
+}
+
+@container layout (max-width: 38rem) {
+  .demo-responsive-card {
+    grid-template-columns: 1fr;
+  }
+}
