@@ -1,0 +1,5 @@
+@layer craftcss-layouts {
+  .c-layout-placeholder {
+    display: block;
+  }
+}

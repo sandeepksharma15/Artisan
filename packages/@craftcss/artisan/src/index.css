@@ -1,0 +1,5 @@
+@layer craftcss-theme-artisan {
+  :root {
+    --craftcss-theme-name: "artisan";
+  }
+}

@@ -1,0 +1,5 @@
+@layer craftcss-utilities {
+  .u-hidden {
+    display: none;
+  }
+}

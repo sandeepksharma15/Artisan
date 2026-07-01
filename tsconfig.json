@@ -1,0 +1,11 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/@craftcss/tokens" },
+    { "path": "packages/@craftcss/foundation" },
+    { "path": "packages/@craftcss/layouts" },
+    { "path": "packages/@craftcss/utilities" },
+    { "path": "packages/@craftcss/components" },
+    { "path": "packages/@craftcss/artisan" }
+  ]
+}

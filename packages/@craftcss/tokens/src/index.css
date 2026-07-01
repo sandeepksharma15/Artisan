@@ -1,0 +1,5 @@
+@layer craftcss-tokens {
+  :root {
+    --craftcss-token-baseline: initial;
+  }
+}

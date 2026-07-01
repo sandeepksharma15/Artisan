@@ -1,0 +1,260 @@
+Updated todo list
+
+I’ll produce a concrete, phased execution plan aligned to your frozen v1 architecture, focused on shipping working packages, tests, and build validation in small reviewable increments. I’m drafting it as step-by-step milestones with clear deliverables, acceptance checks, and sequencing across the monorepo.
+
+**CraftCss v1 High-Level Delivery Plan**
+
+### 1. Establish Monorepo Baseline (Week 0)
+
+Goal: create a stable, repeatable development foundation before any framework logic.
+
+1. Initialize pnpm workspace + Turborepo.
+2. Create frozen folder/package skeleton:
+   - `apps/`
+   - `packages/@craftcss/tokens`
+   - `packages/@craftcss/foundation`
+   - `packages/@craftcss/layouts`
+   - `packages/@craftcss/utilities`
+   - `packages/@craftcss/components`
+   - `packages/@craftcss/artisan`
+   - `docs/`, `tests/`, `tools/`, `scripts/`
+3. Configure shared tooling:
+   - TypeScript project references.
+   - Stylelint + ESLint + Prettier.
+   - PostCSS pipeline with nesting support.
+   - Browserslist for evergreen targets.
+4. Configure Turbo tasks:
+   - `build`, `dev`, `lint`, `test`, `typecheck`.
+5. Add CI baseline:
+   - install, cache, lint, typecheck, test, build.
+
+**Exit criteria**
+
+- `pnpm lint && pnpm test && pnpm build` pass at repo root.
+- All packages build with empty/minimal exports.
+
+---
+
+### 2. Define Package Contracts and Dependency Boundaries (Week 0–1)
+
+Goal: freeze public entry points and enforce dependency direction early.
+
+1. Create `package.json` contracts for each package.
+2. Enforce dependency flow (downward-only) via lint rule/check script.
+3. Define initial public API files:
+   - `index.css`, `index.ts` where needed.
+4. Add architecture tests:
+   - prevent forbidden imports (e.g., components → tokens/foundation/layouts/utilities allowed, reverse disallowed).
+
+**Exit criteria**
+
+- Automated check fails on boundary violations.
+- All package APIs compile and are consumable in a demo app.
+
+---
+
+### 3. Build Token Engine First: `@craftcss/tokens` (Week 1–2)
+
+Goal: establish the 4-layer token system as the core contract for everything else.
+
+1. Implement token layers:
+   - Primitive → Semantic → Component → Theme.
+2. Generate CSS custom properties from token sources (TS build script).
+3. Enforce rule: components cannot consume primitive tokens directly.
+4. Define responsive typography tokens using `clamp()`.
+5. Add token validation tests:
+   - no missing semantic refs
+   - no circular refs
+   - no primitive usage in component layer.
+6. Export token artifacts for consumers.
+
+**Exit criteria**
+
+- Token build generates stable CSS variables.
+- Tests verify all layer rules.
+- Demo app can import and use semantic/component/theme tokens.
+
+---
+
+### 4. Implement Foundation Baseline: `@craftcss/foundation` (Week 2)
+
+Goal: production-safe global baseline without leaking into layouts/components.
+
+1. Add reset + normalization.
+2. Add base element styles:
+   - html/body defaults
+   - headings, paragraphs, lists, links, forms, media.
+3. Add accessibility baseline:
+   - `:focus-visible`
+   - reduced-motion handling
+   - sensible contrast defaults
+   - semantic defaults.
+4. Add color-scheme support hooks.
+5. Keep visuals minimal and token-driven only.
+
+**Exit criteria**
+
+- Foundation CSS is standalone and clean.
+- No utilities/layout/component selectors inside foundation.
+- Accessibility smoke checks pass.
+
+---
+
+### 5. Ship Layout Primitives: `@craftcss/layouts` (Week 2–3)
+
+Goal: structural composition primitives with zero cosmetic styling.
+
+1. Implement:
+   - Stack, Grid, Cluster, Sidebar, Center, Flow, Container, Frame.
+2. Use logical properties and container query-ready patterns.
+3. Provide minimal class/API contract and examples.
+4. Add tests/snapshots for layout behavior in varied container sizes.
+
+**Exit criteria**
+
+- Layout primitives compose predictably.
+- No visual theme styles added.
+- Container-first patterns are demonstrated in app/tests.
+
+---
+
+### 6. Add Atomic Helpers: `@craftcss/utilities` (Week 3)
+
+Goal: small, composable utility surface without component behavior.
+
+1. Define utility taxonomy (spacing, display, typography, visibility, alignment, etc.).
+2. Keep utilities token-aware and low-specificity.
+3. Use cascade layers to keep utility override behavior predictable.
+4. Add size budget guardrails (avoid utility bloat).
+
+**Exit criteria**
+
+- Utilities remain atomic and non-behavioral.
+- CSS size within agreed budget.
+- No overlap with component implementation.
+
+---
+
+### 7. Build Component System Incrementally: `@craftcss/components` (Week 3–6)
+
+Goal: accessible, performant, token-driven component library with consistent Artisan language.
+
+Implement in waves (each wave = design, code, tests, docs examples, accessibility checks):
+
+1. Wave 1 (core forms/actions):
+   - Button, Input, Textarea, Select, Checkbox, Radio, Switch.
+2. Wave 2 (surfaces/navigation):
+   - Card, Menu, Tabs, Table, Badge, Alert.
+3. Wave 3 (overlay/advanced):
+   - Dialog, Dropdown/Popover patterns, Toast, Accordion.
+
+Rules during all waves:
+
+- semantic HTML first.
+- keyboard and focus behavior mandatory.
+- prefer native HTML behavior over JS.
+- use `:has()` only where justified/perf-safe.
+- no primitive token usage directly in components.
+
+**Exit criteria per component**
+
+- Accessibility checklist passes.
+- Theming works via semantic/component/theme tokens.
+- Performance and CSS budget checks pass.
+- API reviewed and marked stable.
+
+---
+
+### 8. Ship Default Theme: `@craftcss/artisan` (Parallel from Week 2, finalize Week 6)
+
+Goal: Artisan as default look only, with no framework logic.
+
+1. Map Artisan values to semantic/component/theme token layers.
+2. Ensure calm, minimal, content-first visual language.
+3. Validate all components under Artisan.
+4. Add theme swap demo proving framework-level customization remains possible.
+
+**Exit criteria**
+
+- Artisan package is pure theme artifact.
+- Components render consistently with Artisan applied.
+- Theme can be replaced without component code changes.
+
+---
+
+### 9. Integration App + Documentation by Example (Week 2–7, ongoing)
+
+Goal: prove real usage continuously (working software over docs-heavy process).
+
+1. Build a docs/demo app in `apps/` using all packages.
+2. Add live examples for each layout/util/component.
+3. Add “copy-paste starter” snippets.
+4. Add accessibility and responsive behavior demos (container-first).
+
+**Exit criteria**
+
+- Demo app consumes published package outputs only.
+- Every public API is exercised in real screens.
+
+---
+
+### 10. Quality Gates and Non-Functional Requirements (Continuous)
+
+Goal: enforce performance, accessibility, and stability from day one.
+
+1. Testing strategy:
+   - unit tests for token/build logic
+   - visual/snapshot tests for CSS outputs/components
+   - a11y automated checks (axe/lighthouse/playwright integration)
+   - interaction tests for keyboard/focus flows.
+2. Performance budgets:
+   - CSS bundle size caps per package
+   - build time thresholds
+   - render/interaction smoke checks.
+3. API stability:
+   - changelog discipline
+   - deprecation policy for v1.
+4. Release automation:
+   - versioning strategy
+   - canary releases
+   - publish pipeline.
+
+**Exit criteria**
+
+- CI blocks regressions on a11y/perf/size/boundaries.
+- Release process works end-to-end.
+
+---
+
+### 11. Suggested Milestone Sequence
+
+1. M1: Monorepo + package contracts + boundary enforcement.
+2. M2: Tokens fully working + tests.
+3. M3: Foundation + layouts.
+4. M4: Utilities + first component wave.
+5. M5: Remaining component waves + Artisan complete.
+6. M6: Hardening pass (a11y/perf/API) + v1 release candidate.
+7. M7: v1.0.0 release.
+
+---
+
+### 12. Definition of Done (v1)
+
+1. All frozen packages implemented with single-responsibility boundaries respected.
+2. Component set is usable in production with keyboard/a11y compliance.
+3. Theming works through token layers without component rewrites.
+4. Container-first responsiveness validated across demos/tests.
+5. CI passes lint/type/test/build + perf/a11y gates.
+6. Release pipeline publishes all packages successfully.
+
+---
+
+**CraftCss v2 Ideas (record only, do not apply to v1 now)**
+
+1. Optional plugin ecosystem for component variants.
+2. Advanced design token tooling (visual token editor).
+3. Extended motion primitives and choreography system.
+4. Additional official themes beyond Artisan.
+5. Design-to-code pipeline integrations (Figma token sync).
+
+If you want, I can generate the next artifact immediately: a concrete M1 implementation checklist with exact tasks, file-by-file ownership, and acceptance tests you can execute in order.

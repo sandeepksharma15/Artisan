@@ -1,0 +1,5 @@
+@layer craftcss-components {
+  .c-component-placeholder {
+    display: block;
+  }
+}
