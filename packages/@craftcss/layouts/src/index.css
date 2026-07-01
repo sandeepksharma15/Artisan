@@ -1,5 +1,104 @@
+@import url("@craftcss/foundation/styles.css");
+
 @layer craftcss-layouts {
-  .c-layout-placeholder {
-    display: block;
+  :where(.l-stack) {
+    --l-stack-gap: var(--craftcss-semantic-space-block-md, 1rem);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--l-stack-gap);
+  }
+
+  :where(.l-stack[data-space="sm"]) {
+    --l-stack-gap: var(--craftcss-semantic-space-block-sm, 0.5rem);
+  }
+
+  :where(.l-stack[data-space="lg"]) {
+    --l-stack-gap: var(--craftcss-semantic-space-block-lg, 1.5rem);
+  }
+
+  :where(.l-grid) {
+    --l-grid-gap: var(--craftcss-semantic-space-block-md, 1rem);
+    --l-grid-min: 16rem;
+
+    display: grid;
+    gap: var(--l-grid-gap);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--l-grid-min)), 1fr));
+  }
+
+  :where(.l-cluster) {
+    --l-cluster-gap: var(--craftcss-semantic-space-inline-sm, 0.5rem);
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--l-cluster-gap);
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  :where(.l-sidebar) {
+    --l-sidebar-gap: var(--craftcss-semantic-space-inline-md, 1rem);
+    --l-sidebar-side: 20rem;
+    --l-sidebar-main-min: 50%;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--l-sidebar-gap);
+    align-items: flex-start;
+  }
+
+  :where(.l-sidebar > :first-child) {
+    flex-basis: var(--l-sidebar-side);
+    flex-grow: 1;
+  }
+
+  :where(.l-sidebar > :last-child) {
+    flex-basis: 0;
+    flex-grow: 999;
+    min-inline-size: var(--l-sidebar-main-min);
+  }
+
+  :where(.l-center) {
+    --l-center-max: 75rem;
+    --l-center-gutter: var(--craftcss-semantic-space-inline-md, 1rem);
+
+    box-sizing: content-box;
+    inline-size: min(100%, var(--l-center-max));
+    margin-inline: auto;
+    padding-inline: var(--l-center-gutter);
+  }
+
+  :where(.l-flow) {
+    --l-flow-space: var(--craftcss-semantic-space-block-md, 1rem);
+  }
+
+  :where(.l-flow > * + *) {
+    margin-block-start: var(--l-flow-space);
+  }
+
+  :where(.l-container) {
+    --l-container-max: 90rem;
+    --l-container-gutter: var(--craftcss-semantic-space-inline-md, 1rem);
+
+    container-type: inline-size;
+    container-name: layout;
+    inline-size: min(100%, var(--l-container-max));
+    margin-inline: auto;
+    padding-inline: var(--l-container-gutter);
+  }
+
+  :where(.l-frame) {
+    --l-frame-ratio: 16 / 9;
+
+    display: grid;
+    aspect-ratio: var(--l-frame-ratio);
+    overflow: clip;
+    place-items: stretch;
+  }
+
+  :where(.l-frame > *) {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
   }
 }
