@@ -1,5 +1,158 @@
+@import url("@craftcss/layouts/styles.css");
+
 @layer craftcss-utilities {
-  .u-hidden {
-    display: none;
+  :where(.u-hidden) {
+    display: none !important;
+  }
+
+  :where(.u-visually-hidden) {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  :where(.u-block) {
+    display: block;
+  }
+
+  :where(.u-inline) {
+    display: inline;
+  }
+
+  :where(.u-inline-block) {
+    display: inline-block;
+  }
+
+  :where(.u-flex) {
+    display: flex;
+  }
+
+  :where(.u-grid) {
+    display: grid;
+  }
+
+  :where(.u-flex-col) {
+    flex-direction: column;
+  }
+
+  :where(.u-items-center) {
+    align-items: center;
+  }
+
+  :where(.u-justify-center) {
+    justify-content: center;
+  }
+
+  :where(.u-justify-between) {
+    justify-content: space-between;
+  }
+
+  :where(.u-gap-sm) {
+    gap: var(--craftcss-semantic-space-inline-sm, 0.5rem);
+  }
+
+  :where(.u-gap-md) {
+    gap: var(--craftcss-semantic-space-inline-md, 1rem);
+  }
+
+  :where(.u-gap-lg) {
+    gap: var(--craftcss-semantic-space-block-lg, 1.5rem);
+  }
+
+  :where(.u-m-0) {
+    margin: 0;
+  }
+
+  :where(.u-mt-sm) {
+    margin-block-start: var(--craftcss-semantic-space-block-sm, 0.5rem);
+  }
+
+  :where(.u-mt-md) {
+    margin-block-start: var(--craftcss-semantic-space-block-md, 1rem);
+  }
+
+  :where(.u-mb-sm) {
+    margin-block-end: var(--craftcss-semantic-space-block-sm, 0.5rem);
+  }
+
+  :where(.u-mb-md) {
+    margin-block-end: var(--craftcss-semantic-space-block-md, 1rem);
+  }
+
+  :where(.u-p-0) {
+    padding: 0;
+  }
+
+  :where(.u-p-sm) {
+    padding: var(--craftcss-semantic-space-block-sm, 0.5rem);
+  }
+
+  :where(.u-p-md) {
+    padding: var(--craftcss-semantic-space-block-md, 1rem);
+  }
+
+  :where(.u-px-sm) {
+    padding-inline: var(--craftcss-semantic-space-inline-sm, 0.5rem);
+  }
+
+  :where(.u-px-md) {
+    padding-inline: var(--craftcss-semantic-space-inline-md, 1rem);
+  }
+
+  :where(.u-py-sm) {
+    padding-block: var(--craftcss-semantic-space-block-sm, 0.5rem);
+  }
+
+  :where(.u-py-md) {
+    padding-block: var(--craftcss-semantic-space-block-md, 1rem);
+  }
+
+  :where(.u-w-full) {
+    inline-size: 100%;
+  }
+
+  :where(.u-h-full) {
+    block-size: 100%;
+  }
+
+  :where(.u-overflow-auto) {
+    overflow: auto;
+  }
+
+  :where(.u-overflow-clip) {
+    overflow: clip;
+  }
+
+  :where(.u-text-start) {
+    text-align: start;
+  }
+
+  :where(.u-text-center) {
+    text-align: center;
+  }
+
+  :where(.u-text-end) {
+    text-align: end;
+  }
+
+  :where(.u-text-muted) {
+    color: var(--craftcss-semantic-color-fg-muted);
+  }
+
+  :where(.u-font-body) {
+    font-size: var(--craftcss-semantic-typography-size-body);
+    line-height: var(--craftcss-semantic-typography-line-height-body);
+  }
+
+  :where(.u-font-title) {
+    font-size: var(--craftcss-semantic-typography-size-title);
+    line-height: var(--craftcss-semantic-typography-line-height-title);
+    font-weight: var(--craftcss-semantic-typography-weight-emphasis);
   }
 }
