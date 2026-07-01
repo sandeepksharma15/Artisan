@@ -1,5 +1,44 @@
+@import url("@craftcss/components/styles.css");
+
 @layer craftcss-theme-artisan {
-  :root {
-    --craftcss-theme-name: "artisan";
+  :where(
+    :root:not([data-craftcss-theme]),
+    :root[data-craftcss-theme="artisan"],
+    [data-craftcss-theme="artisan"]
+  ) {
+    --craftcss-theme-name: artisan;
+    --craftcss-semantic-color-bg-canvas: #fcfcfb;
+    --craftcss-semantic-color-bg-subtle: #f3f4f2;
+    --craftcss-semantic-color-fg-default: #1f242b;
+    --craftcss-semantic-color-fg-muted: #5c6676;
+    --craftcss-semantic-color-fg-on-brand: #fff;
+    --craftcss-semantic-color-border-default: #d9dfe7;
+    --craftcss-semantic-color-brand-solid: #2f63c6;
+    --craftcss-semantic-color-brand-solid-hover: #244ea0;
+    --craftcss-semantic-color-status-success: #23784d;
+    --craftcss-semantic-color-status-danger: #b33d50;
+    --craftcss-semantic-radius-control: 0.625rem;
+    --craftcss-semantic-radius-surface: 0.875rem;
+    --craftcss-semantic-radius-pill: 9999px;
+    --craftcss-semantic-space-inline-sm: 0.55rem;
+    --craftcss-semantic-space-inline-md: 1rem;
+    --craftcss-semantic-space-block-sm: 0.55rem;
+    --craftcss-semantic-space-block-md: 1rem;
+    --craftcss-semantic-space-block-lg: 1.6rem;
+    --craftcss-component-button-bg-default: var(--craftcss-semantic-color-brand-solid);
+    --craftcss-component-button-fg-default: var(--craftcss-semantic-color-fg-on-brand);
+    --craftcss-component-button-radius: var(--craftcss-semantic-radius-control);
+    --craftcss-component-button-padding-inline: 1rem;
+    --craftcss-component-button-padding-block: 0.55rem;
+    --craftcss-component-button-font-weight: var(--craftcss-semantic-typography-weight-emphasis);
+    --craftcss-component-field-bg: var(--craftcss-semantic-color-bg-canvas);
+    --craftcss-component-field-border-color: var(--craftcss-semantic-color-border-default);
+    --craftcss-component-field-radius: var(--craftcss-semantic-radius-control);
+    --craftcss-component-field-padding-inline: 0.65rem;
+    --craftcss-component-field-padding-block: 0.55rem;
+    --craftcss-component-card-bg: var(--craftcss-semantic-color-bg-canvas);
+    --craftcss-component-card-border-color: var(--craftcss-semantic-color-border-default);
+    --craftcss-component-card-radius: var(--craftcss-semantic-radius-surface);
+    --craftcss-component-card-padding: 1rem;
   }
 }
